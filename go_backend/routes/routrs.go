@@ -6,7 +6,8 @@ import (
 )
 
 func SetUpRoutes(app *fiber.App) {
+	controllers.InitUserController()
 	api := app.Group("/api")
 
-	api.Get("/" , controllers.Getuser)
+	api.Get("/" , controllers.GetUsers)
 }

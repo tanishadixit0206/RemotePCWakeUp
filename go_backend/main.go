@@ -10,10 +10,10 @@ import (
 )
 
 func main(){
-	app := fiber.New()
 
 	databases.ConnectDB()
 	defer databases.DisconnectDB()
+	app := fiber.New()
 
 	routes.SetUpRoutes(app)
 
