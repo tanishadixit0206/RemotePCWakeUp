@@ -9,4 +9,11 @@ func SetUpRoutes(app *fiber.App) {
 	api := app.Group("/api")
 
 	api.Get("/" , controllers.Getuser)
+	app.Get("/", func(c *fiber.Ctx) error {
+		ipAddress:=c.IP()
+		return c.JSON(fiber.Map{
+			"message": "Welcome to the Fiber App!",
+			"ip": ipAddress,
+		})
+	})
 }
