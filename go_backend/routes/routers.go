@@ -6,9 +6,10 @@ import (
 )
 
 func SetUpRoutes(app *fiber.App) {
+	controllers.InitUserController()
 	api := app.Group("/api")
 
-	api.Get("/" , controllers.Getuser)
+	api.Get("/users" , controllers.GetUsers)
 	app.Get("/", func(c *fiber.Ctx) error {
 		ipAddress:=c.IP()
 		return c.JSON(fiber.Map{
