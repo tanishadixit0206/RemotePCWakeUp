@@ -3,7 +3,6 @@ package databases
 import (
     "context"
     "log"
-    "os"
     "time"
     "go.mongodb.org/mongo-driver/mongo"
     "go.mongodb.org/mongo-driver/mongo/options"
@@ -13,8 +12,15 @@ var MongoClient *mongo.Client
 var MongoDB *mongo.Database
 
 func ConnectDB() {
-    mongoURI := os.Getenv("MONGODB_URI")
+    mongoURI := "mongodb://localhost:27017"
+    dbName := "test"
+
+    if mongoURI == "" || dbName == "" {
+        log.Fatal("MONGODB_URI or MONGO_DB_NAME is not set")
+    }
+
     clientOptions := options.Client().ApplyURI(mongoURI)
+
     ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
     defer cancel()
 
@@ -29,8 +35,7 @@ func ConnectDB() {
     }
 
     MongoClient = client
-
-    MongoDB = client.Database(os.Getenv("MONGO_DB_NAME"))
+    MongoDB = client.Database(dbName)
 
     log.Println("Connected to MongoDB!")
 }
