@@ -1,7 +1,7 @@
 <script lang="ts">
   import { signIn } from "@auth/sveltekit/client"
   function handleSignIn(){
-      signIn("google");
+      signIn("google",{callbackUrl:'/'});
   }
 </script>
 
