@@ -4,10 +4,11 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/tanishadixit0206/RemotePCWakeUp/go_backend/databases"
 	"github.com/tanishadixit0206/RemotePCWakeUp/go_backend/routes"
-
-	// "go_backend/config"
+	"github.com/tanishadixit0206/RemotePCWakeUp/go_backend/handlers"
+	"net/http"
 	"log"
 )
+
 
 func main(){
 
@@ -16,6 +17,6 @@ func main(){
 	app := fiber.New()
 
 	routes.SetUpRoutes(app)
-
+	http.HandleFunc("/auth",handlers.GoogleAuthHandler)
 	log.Fatal(app.Listen(":3000"))
 }
