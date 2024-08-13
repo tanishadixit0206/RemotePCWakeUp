@@ -19,4 +19,5 @@ func main(){
 	routes.SetUpRoutes(app)
 	http.HandleFunc("/auth",handlers.GoogleAuthHandler)
 	log.Fatal(app.Listen(":3000"))
+	// log.Fatal(app.Listen("192.168.13.61:3000"))
 }
