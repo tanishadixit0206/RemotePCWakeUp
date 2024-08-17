@@ -8,6 +8,7 @@ import (
 	"github.com/tanishadixit0206/RemotePCWakeUp/go_backend/databases"
 	"github.com/tanishadixit0206/RemotePCWakeUp/go_backend/models"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -48,4 +49,27 @@ func GetUsers(c *fiber.Ctx) error {
     }
 
     return c.JSON(users)
+}
+
+func CreateUser(c *fiber.Ctx)error{
+    var user models.User;
+    if err:= c.BodyParser(&user);err!=nil{
+        return c.Status(400).JSON(fiber.Map{
+            "error":"Cannot parse JSON",
+        })
+
+    }
+    user.ID=primitive.NewObjectID().Hex()
+
+    ctx,cancel:=context.WithTimeout(context.Background(),10*time.Second)
+    defer cancel()
+
+    result,err:=userCollection.InsertOne(ctx,user)
+    if err!=nil{
+        return c.Status(500).JSON(fiber.Map{
+            "error":"Failed to insert user",
+        })
+    }
+
+    return c.Status(201).JSON(result)
 }

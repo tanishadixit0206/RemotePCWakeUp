@@ -13,7 +13,6 @@ func GetipAddress(c *fiber.Ctx) error {
 	ipParts := strings.Split(clientIP, ".")
 	subnet := fmt.Sprintf("%s.%s.%s", ipParts[0], ipParts[1], ipParts[2])
 
-	// Scan the subnet for active IPs
 	connectedDevices := scanSubnet(subnet)
 	return c.JSON(connectedDevices)
 }
@@ -24,7 +23,6 @@ func scanSubnet(subnet string) []string {
 	for i := 1; i <= 255; i++ {
 		ip := fmt.Sprintf("%s.%d", subnet, i)
 
-		// Run the ARP command
 		cmd := exec.Command("arp", "-a", ip)
 		output, err := cmd.Output()
 		if err != nil {
@@ -32,7 +30,6 @@ func scanSubnet(subnet string) []string {
 			continue
 		}
 
-		// Parse the ARP command output to extract the MAC address
 		outputStr := string(output)
 		lines := strings.Split(outputStr, "\n")
 		for _, line := range lines {
