@@ -1,7 +1,11 @@
 <script lang="ts">
   import { signIn } from "@auth/sveltekit/client"
-  function handleSignIn(){
-      signIn("google",{callbackUrl:'/'});
+  async function handleSignIn(){
+    try{
+      await signIn("google",{callbackUrl:'/'});
+    }catch(error){
+      console.log(error);
+    }
   }
 </script>
 
