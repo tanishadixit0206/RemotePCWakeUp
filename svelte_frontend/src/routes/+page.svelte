@@ -1,14 +1,38 @@
 <script lang="ts">
-  let devices: any[] = [];
+	import { getDevices } from "$lib/api/getDevices";
+	import googleLogin from "$lib/api/googleLogin";
+	import { signOut } from "@auth/sveltekit/client";
+	import { onMount } from "svelte";
+
+  let devices: string[] = [];
   let isLoading = true;
 
+  onMount(async()=>{
+    try{
+      await googleLogin();
+      devices=await getDevices();
+      console.log(devices,JSON.stringify(devices[0]));
+      isLoading=false;
+    }catch(error){
+      console.log(error);
+    }
+  })
+
+  async function handleSignOut(){
+    try{
+      await signOut();
+    }catch(error){
+      console.log(error);
+    }
+  }
 	function handleAddDevice() {}
-	function toggleDevice(id: number, status: string): any {}
+	function toggleDevice( status: string): any {}
 
 </script>
  
  <main class="p-4">
   <h1 class="text-2xl font-bold mb-4">My Devices</h1>
+  <button on:click={handleSignOut} class="bg-green-500 text-white px-4 py-2 rounded mb-4">SignOut</button>
   <button on:click={handleAddDevice} class="bg-green-500 text-white px-4 py-2 rounded mb-4">Add Device</button>
 
   {#if isLoading}
@@ -17,11 +41,11 @@
     <ul>
       {#each devices as device}
         <li class="flex items-center justify-between mb-2 p-2 bg-white shadow rounded">
-          <span>{device.name}</span>
-          {#if device.status === 'off'}
-            <button on:click={() => toggleDevice(device.id, 'on')} class="bg-blue-500 text-white px-4 py-2 rounded">Turn On</button>
+          <span>{device}</span>
+          {#if device === 'off'}
+            <button on:click={() => toggleDevice(device)} class="bg-blue-500 text-white px-4 py-2 rounded">Turn On</button>
           {:else}
-            <button on:click={() => toggleDevice(device.id, 'off')} class="bg-red-500 text-white px-4 py-2 rounded">Turn Off</button>
+            <button on:click={() => toggleDevice(device)} class="bg-red-500 text-white px-4 py-2 rounded">Turn Off</button>
           {/if}
         </li>
       {/each}
