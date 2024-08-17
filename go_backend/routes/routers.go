@@ -3,19 +3,13 @@ package routes
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/tanishadixit0206/RemotePCWakeUp/go_backend/controllers"
-	// "github.com/tanishadixit0206/RemotePCWakeUp/go_backend/handlers"
-
+	"github.com/tanishadixit0206/RemotePCWakeUp/go_backend/middleware"
 )
 
 func SetUpRoutes(app *fiber.App) {
 	controllers.InitUserController()
-	api := app.Group("/api")
-	app.Get("/auth",func(c *fiber.Ctx)error{
-		// email:=handlers.GoogleAuthHandler
-		return c.JSON(fiber.Map{
-			"email":"yo",
-		})
-	})
+	app.Get("/auth",controllers.GoogleAuthHandler)
+	api:=app.Group("/api",middleware.AuthRequired)
 	api.Get("/users" , controllers.GetUsers)
 	app.Get("/", controllers.GetipAddress)
 }
