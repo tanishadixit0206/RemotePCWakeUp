@@ -27,5 +27,5 @@ func main(){
 	routes.SetUpRoutes(app)
 	// log.Fatal(app.Listen(":3000"))
 
-	log.Fatal(app.Listen("192.168.0.107:3000"))
+	log.Fatal(app.Listen("192.168.0.103:3000"))
 }
