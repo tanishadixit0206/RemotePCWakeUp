@@ -1,20 +1,20 @@
 package databases
 
 import (
-    "context"
-    "log"
-    "time"
-    "go.mongodb.org/mongo-driver/mongo"
-    "go.mongodb.org/mongo-driver/mongo/options"
+	"context"
+	"log"
+	"os"
+	"time"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 var MongoClient *mongo.Client
 var MongoDB *mongo.Database
 
 func ConnectDB() {
-    mongoURI := "mongodb://localhost:27017"
-    dbName := "test"
-
+    dbName :=os.Getenv("DBNAME")
+    mongoURI:=os.Getenv("MONGOURI")
     if mongoURI == "" || dbName == "" {
         log.Fatal("MONGODB_URI or MONGO_DB_NAME is not set")
     }
