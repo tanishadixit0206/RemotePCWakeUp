@@ -11,5 +11,6 @@ func SetUpRoutes(app *fiber.App) {
 	app.Get("/auth",controllers.GoogleAuthHandler)
 	api:=app.Group("/api",middleware.AuthRequired)
 	api.Get("/users" , controllers.GetUsers)
-	app.Get("/", controllers.GetipAddress)
+	api.Get("/wol",controllers.Wol)
+	api.Get("/", controllers.GetConnectedDevices)
 }
