@@ -21,20 +21,20 @@ func Wol(mac string)error {
 	// 	})
 	// }
 
-	// parsedMac, err := net.ParseMAC(body.Mac)
-	// if err!=nil{
-	// 	return fmt.Errorf("invalid mac address:%v",err)
-	// }
+	parsedMac, err := net.ParseMAC(mac)
+	if err!=nil{
+		return fmt.Errorf("invalid mac address:%v",err)
+	}
 
 	var packet bytes.Buffer
 	packet.Write(bytes.Repeat([]byte{0xFF},6))
 
-	macbyte:=[]byte(mac)
+	// macbyte:=[]byte(mac)
 	for i:=0;i<16;i++{
-		packet.Write(macbyte)
+		packet.Write(parsedMac)
 	}
 
-	conn,err:=net.Dial("udp","255.255.255.255:9")
+	conn,err:=net.Dial("udp4","255.255.255.255:7")
 	if err!=nil{
 		return fmt.Errorf("failed to dial udp:%v",err)
 	}
@@ -45,6 +45,12 @@ func Wol(mac string)error {
 	}
 
 	return nil
+
+	// err:=wol.Send("255.255.255.255","9",mac)
+	// if(err!=nil){
+	// 	return err
+	// }
+	// return nil
 
 }
 
