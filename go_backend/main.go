@@ -1,10 +1,13 @@
 package main
 
 import (
+	// "fmt"
 	"log"
-	"github.com/joho/godotenv"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/joho/godotenv"
+	// "github.com/tanishadixit0206/RemotePCWakeUp/go_backend/controllers"
 	"github.com/tanishadixit0206/RemotePCWakeUp/go_backend/databases"
 	"github.com/tanishadixit0206/RemotePCWakeUp/go_backend/routes"
 )
@@ -27,5 +30,5 @@ func main(){
 	routes.SetUpRoutes(app)
 	// log.Fatal(app.Listen(":3000"))
 
-	log.Fatal(app.Listen("192.168.0.103:3000"))
+	log.Fatal(app.Listen("192.168.1.100:3000"))
 }

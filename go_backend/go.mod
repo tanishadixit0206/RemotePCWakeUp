@@ -9,16 +9,22 @@ require (
 	go.mongodb.org/mongo-driver v1.16.1
 )
 
+require github.com/starudream/wake-on-lan v1.3.4 // indirect
+
 require (
 	github.com/andybalholm/brotli v1.1.0 // indirect
+	github.com/coreos/bbolt v1.3.1-coreos.6.0.20180223184059-4f5275f4ebbf // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/uuid v1.6.0 // indirect
+	github.com/jessevdk/go-flags v0.0.0-20150816100521-1acbbaff2f34 // indirect
 	github.com/klauspost/compress v1.17.9 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mattn/go-runewidth v0.0.16 // indirect
 	github.com/montanaflynn/stats v0.7.1 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
+	// github.com/sabhiram/go-colorize v0.0.0-20210403184538-366f55d711cf // indirect
+	// github.com/sabhiram/go-wol v0.0.0-20211224004021-c83b0c2f887d // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.55.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect

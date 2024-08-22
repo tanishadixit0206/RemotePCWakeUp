@@ -4,28 +4,34 @@ import (
 	"bytes"
 	"fmt"
 	"net"
-	"github.com/gofiber/fiber/v2"
+	// "github.com/gofiber/fiber/v2"
+	// "os/exec"
+
+	// "github.com/sabhiram/go-wol/wol"
+	// "github.com/starudream/wake-on-lan"
+	// "github.com/starudream/wake-on-lan/wol"
 )
 
-func Wol(c *fiber.Ctx) error{
-	var body RequestBody
+func Wol(mac string)error {
+	// var body RequestBody
 
-	if err := c.BodyParser(&body); err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"error": "Cannot parse JSON",
-		})
-	}
+	// if err := c.BodyParser(&body); err != nil {
+	// 	return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+	// 		"error": "Cannot parse JSON",
+	// 	})
+	// }
 
-	parsedMac, err := net.ParseMAC(body.Mac)
-	if err!=nil{
-		return fmt.Errorf("invalid mac address:%v",err)
-	}
+	// parsedMac, err := net.ParseMAC(body.Mac)
+	// if err!=nil{
+	// 	return fmt.Errorf("invalid mac address:%v",err)
+	// }
 
 	var packet bytes.Buffer
 	packet.Write(bytes.Repeat([]byte{0xFF},6))
 
+	macbyte:=[]byte(mac)
 	for i:=0;i<16;i++{
-		packet.Write(parsedMac)
+		packet.Write(macbyte)
 	}
 
 	conn,err:=net.Dial("udp","255.255.255.255:9")
@@ -39,6 +45,7 @@ func Wol(c *fiber.Ctx) error{
 	}
 
 	return nil
+
 }
 
 type RequestBody struct {
