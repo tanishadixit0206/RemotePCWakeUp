@@ -24,5 +24,5 @@ func SetUpRoutes(app *fiber.App) {
 	}
 	return c.SendString("WOL command sent successfully!")
 	})
-	app.Get("/", controllers.GetConnectedDevices)
+	api.Get("/", controllers.GetConnectedDevices)
 }

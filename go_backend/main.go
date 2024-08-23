@@ -21,7 +21,7 @@ func main(){
 
 	app := fiber.New()
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "http://localhost:5173/",
+		AllowOrigins: "http://localhost:3000/",
 		AllowCredentials: true,
 	}))
 	
@@ -29,5 +29,5 @@ func main(){
 	defer databases.DisconnectDB()
 	routes.SetUpRoutes(app)
 
-	log.Fatal(app.Listen("192.168.1.100:3000"))
+	log.Fatal(app.Listen("192.168.1.101:3000"))
 }
