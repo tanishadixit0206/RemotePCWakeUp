@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken';
 import passport from 'passport';
 import connect from './utilis/dbconnect.js';
 import { User } from './models/usermodel.js';
+import cors from 'cors';
 import './utilis/passport.js';
 // import bcrypt from 'bcrypt';
 
@@ -14,7 +15,12 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-
+app.use(
+    cors({
+        origin: "http://localhost:3000",
+        credentials:true
+    })
+)
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -65,7 +71,7 @@ app.post('/auth/login', async (req, res) => {
              process.env.JWT_SECRET,
              { algorithm: "HS256" }
          );
-         res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'strict' }).sendStatus(200);
+         res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'strict' }).status(200).json({msg : "you have been logged in"})
     //  } else {      res.status(400).json({ msg: "Username or password is incorrect" });
     //  }
 });
