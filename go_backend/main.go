@@ -29,5 +29,5 @@ func main(){
 	defer databases.DisconnectDB()
 	routes.SetUpRoutes(app)
 
-	log.Fatal(app.Listen("192.168.1.101:3000"))
+	log.Fatal(app.Listen("192.168.1.102:3000"))
 }

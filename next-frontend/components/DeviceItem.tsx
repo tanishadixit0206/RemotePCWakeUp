@@ -3,10 +3,10 @@ import { DeviceItemProps } from '@/types';
 import React from 'react';
 
 const DeviceItem: React.FC<DeviceItemProps> = ({ device }) => {
-  const handleToggle = async (mac:string) => {
+  const handleToggle = async () => {
     try {
         if(device.Status!='On'){
-            sendWol(mac)
+            sendWol()
         }else{
     
         }     
@@ -23,7 +23,7 @@ const DeviceItem: React.FC<DeviceItemProps> = ({ device }) => {
         <p className="text-sm text-gray-500">{device.IP}</p>
       </div>
       <button
-        onClick={()=>handleToggle(device.MAC)}
+        onClick={()=>handleToggle()}
         className={`px-6 py-2 rounded-full text-white transition-colors duration-300 ease-in-out ${
           device.Status === 'On'
             ? 'bg-red-500 hover:bg-red-600'
