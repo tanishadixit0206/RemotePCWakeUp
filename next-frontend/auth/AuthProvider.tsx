@@ -9,7 +9,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     useEffect(() => {
         try {
-            const authCookie = getCookie('auth-token'); 
+            const authCookie = getCookie('auth');
+            console.log(authCookie) 
             if (authCookie) {
                 setIsAuthenticated(true);
             } else {
