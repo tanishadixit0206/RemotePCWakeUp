@@ -26,8 +26,6 @@ func (d *DHCPServer) ServeDHCP(p dhcp4.Packet, msgType dhcp4.MessageType, option
 	return nil
 }
 
-server := &DHCPServer{}
-
 func main(){
 	err := godotenv.Load()
 	if err != nil {
