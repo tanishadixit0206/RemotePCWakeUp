@@ -7,6 +7,7 @@ require (
 	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/joho/godotenv v1.5.1
 	go.mongodb.org/mongo-driver v1.16.1
+	github.com/krolaw/dhcp4 v0.0.0-20190909130307-a50d88189771
 )
 
 require (
