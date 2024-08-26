@@ -17,7 +17,8 @@ func SetUpRoutes(app *fiber.App) {
 	api.Get("/users" , controllers.GetUsers)
 	api.Get("/wol",
 	func(c *fiber.Ctx) error {
-		mac:=os.Getenv("TEST_MAC") 
+		mac:=
+		os.Getenv("TEST_MAC") 
 		err := controllers.Wol(mac)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).SendString(err.Error())

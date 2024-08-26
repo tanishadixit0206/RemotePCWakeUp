@@ -34,7 +34,7 @@ func Wol(mac string)error {
 		packet.Write(parsedMac)
 	}
 
-	conn,err:=net.Dial("udp4","255.255.255.255:7")
+	conn,err:=net.Dial("udp","255.255.255.255:9")
 	if err!=nil{
 		return fmt.Errorf("failed to dial udp:%v",err)
 	}

@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
     cors({
-        origin: "http://localhost:3000",
+        origin: "http://192.168.1.104:3000",
         credentials:true
     })
 )
@@ -82,7 +82,7 @@ app.get('/check', (req, res) => {
     }
     res.send(`Hello ${req.user}`);
 });
-const hostname = '127.0.0.1';
+const hostname = '192.168.1.104';
 app.listen(7777,hostname, () => {
     console.log('Server has started on port 7777');
 });
