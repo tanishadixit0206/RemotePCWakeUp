@@ -19,6 +19,8 @@ require (
 	github.com/mattn/go-runewidth v0.0.16 // indirect
 	github.com/montanaflynn/stats v0.7.1 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
+	// github.com/sabhiram/go-colorize v0.0.0-20210403184538-366f55d711cf // indirect
+	// github.com/sabhiram/go-wol v0.0.0-20211224004021-c83b0c2f887d // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.55.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect

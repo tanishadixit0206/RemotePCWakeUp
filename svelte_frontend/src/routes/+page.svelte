@@ -43,6 +43,8 @@
       {#each devices as device}
         <li class="flex items-center justify-between mb-2 p-2 bg-white shadow rounded">
           <span>{device.IP}</span>
+          <span>{device.MAC}</span>
+
           {#if device.Status === 'On'}
             <button on:click={() => toggleDevice(device.MAC)} class="bg-red-500 text-white px-4 py-2 rounded">Turn Off</button>
           {:else}
