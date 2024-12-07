@@ -11,6 +11,7 @@ const DeviceList: React.FC = () => {
 
   useEffect(() => {
     const fetchDevices = async () => {
+      //fetching the connected devices from backend
       try {
         const data = await getDevices();
         setDevices(data);

@@ -1,5 +1,6 @@
 import axios from 'axios'
 export async function login(username:string,email:string,password:string):Promise<number>{
+    //sending login credentials to backend
     try{
         const res=await axios.post(`${process.env.NEXT_PUBLIC_AUTHSERVICE_URL}/auth/login`,{
             username:username,

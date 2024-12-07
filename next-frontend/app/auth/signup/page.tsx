@@ -17,7 +17,7 @@ const Signup: React.FC = () => {
           setEmail(event.currentTarget.email.value)
           if(username!==null&&password!==null&&email!==null){
             // const hashedPassword=await hashPassword(password)
-            const response=await signup(username,email,password)
+            const response=await signup(username,email,password)//implementing signup
             console.log(response)
           }else{
             console.log("Null credentials")

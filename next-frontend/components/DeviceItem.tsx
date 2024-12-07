@@ -4,6 +4,7 @@ import React from 'react';
 
 const DeviceItem: React.FC<DeviceItemProps> = ({ device }) => {
   const handleToggle = async () => {
+    //implementing wake on lan
     try {
         if(device.Status!='On'){
             sendWol()
