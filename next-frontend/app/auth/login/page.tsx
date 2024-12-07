@@ -17,7 +17,7 @@ const Login: React.FC = () => {
           
           if(username!==null&&password!==null&&email!==null){
             // const hashedPassword=await hashPassword(password)
-            const response=await login(username,email,password)
+            const response=await login(username,email,password) //implementing login 
             if(response==200){
               setCookie('auth','true',30)
               console.log(document.cookie)

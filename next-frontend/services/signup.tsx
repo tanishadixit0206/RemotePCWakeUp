@@ -1,5 +1,6 @@
 import axios from 'axios'
 export async function signup(username:string,email:string,password:string){
+    //sending registration credentials to backend
     try{
         const res=await axios.post(`${process.env.NEXT_PUBLIC_AUTHSERVICE_URL}/auth/signup`,{
             username:username,
